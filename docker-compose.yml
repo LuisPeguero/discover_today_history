@@ -11,6 +11,8 @@ services:
     ports:
       - 8000:8000
       - 8001:8001
+    environment:
+      - TRANSLATE_API_URL=http://localhost:5000
   frontend:
     build: ./frontend
     ports:

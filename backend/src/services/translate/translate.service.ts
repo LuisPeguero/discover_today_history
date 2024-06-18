@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as unirest from 'unirest';
+import axios from 'axios';
 
 @Injectable()
 export class TranslateService {
@@ -11,23 +11,24 @@ export class TranslateService {
     const url = `${process.env.TRANSLATE_API_URL}/translate`;
     console.log(url);
 
-    const response = await unirest
-      .post(url)
-      .headers({
-        'Content-Type': 'application/json',
-      })
-      .send(
-        JSON.stringify({
-          q: text,
-          source: source,
-          target: target,
-        }),
-      );
+    const response = await axios.post(
+      url,
+      {
+        q: text,
+        source: source,
+        target: target,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
 
-    if (response.error) {
-      throw new Error('translate api ' + response.error);
+    if (response.status !== 200) {
+      throw new Error('translate api ' + response.status);
     }
 
-    return response.body.translatedText;
+    return response.data.translatedText;
   }
 }
