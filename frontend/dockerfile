@@ -1,0 +1,11 @@
+FROM node:22.3.0
+
+WORKDIR /usr/src/app
+
+RUN npm install -g @ionic/cli cordova
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8100
+
+CMD ["ionic", "serve", "--no-open", "--external"]

@@ -1,0 +1,31 @@
+.ion-datetime-button {
+    display: none !important;
+}
+
+.date-filter{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.filter{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-select {
+    width: 50%;
+    margin-left: 10px;
+}
+
+@media (max-width: 720px) {
+    .date-filter{
+        margin-top: 0px;
+    }
+}
